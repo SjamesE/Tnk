@@ -11,7 +11,7 @@ namespace Tnk
 
         private float lastTime = 0;
 
-        Time()
+        public Time()
         {
             clock = new Clock();
         }
@@ -20,6 +20,8 @@ namespace Tnk
         {
             totalTime = clock.ElapsedTime.AsSeconds();
             deltaTime = totalTime - lastTime;
+
+
             lastTime = totalTime;
         }
 
