@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Tnk
+﻿namespace Tnk
 {
     internal class Program
     {

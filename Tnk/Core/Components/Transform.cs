@@ -8,7 +8,7 @@ namespace Tnk.Core
         public Vector2 rotation { get; set; }
         public Vector2 scale { get; set; }
 
-        public Transform()
+        public Transform(GameObject gameObject) : base(gameObject)
         {
             position = new Vector2();
             rotation = new Vector2();

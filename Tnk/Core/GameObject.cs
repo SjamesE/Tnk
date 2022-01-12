@@ -12,7 +12,7 @@
         public GameObject(string name)
         {
             this.name = name;
-            transform = new Transform();
+            transform = new Transform(this);
             components.Add(transform);
         }
 
@@ -28,7 +28,7 @@
                 if (type == component.GetType())
                     return component;
             }
-            throw null;
+            return null;
         }
     }
 }

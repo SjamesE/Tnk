@@ -1,4 +1,5 @@
 ﻿using SFML.Graphics;
+using SFML.System;
 
 namespace Tnk.Core
 {
@@ -22,6 +23,7 @@ namespace Tnk.Core
 
         public void Render(RenderWindow window)
         {
+            sprite.Position = new Vector2f(transform.position.x, transform.position.y);
             window.Draw(sprite);
         }
     }

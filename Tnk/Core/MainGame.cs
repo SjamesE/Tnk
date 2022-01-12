@@ -5,12 +5,12 @@ namespace Tnk
     {
         public override void Update()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
      
         public override void Draw()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }
