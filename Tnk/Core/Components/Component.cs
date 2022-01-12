@@ -2,8 +2,9 @@
 {
     internal abstract class Component
     {
-        GameObject parent;
-        Transform transform;
+        public GameObject parent { get; private set; }
+        public Transform transform { get; private set; }
+
 
         public Component(GameObject gameObject)
         {

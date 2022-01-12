@@ -7,16 +7,12 @@ namespace Tnk.Core
         public Texture texture { get; private set; }
         public Sprite sprite { get; private set; }
 
-        //public Renderer(GameObject gameObject, Texture texture)
-        //{
-        //    this.texture = texture;
-        //
-        //    sprite = new Sprite();
-        //    sprite.Texture = texture;
-        //}
-        public Renderer(GameObject gameObject)
+        public Renderer(GameObject gameObject, Texture texture) : base(gameObject)
         {
-
+            this.texture = texture;
+        
+            sprite = new Sprite();
+            sprite.Texture = texture;
         }
 
         public void SetTexture(Texture texture)
