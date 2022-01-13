@@ -1,14 +1,16 @@
-﻿
-namespace Tnk
+﻿using Tnk.Scenes.Menu;
+
+namespace Tnk.Core
 {
     internal class MainGame : Game
     {
-        public override void Update()
+        public override void Initialize()
         {
-            //throw new NotImplementedException();
+            MainMenu mainMenu = new MainMenu();
+            SceneManager.ChangeActiveScene(mainMenu.sceneIndex);
         }
-     
-        public override void Draw()
+
+        public override void Update()
         {
             //throw new NotImplementedException();
         }

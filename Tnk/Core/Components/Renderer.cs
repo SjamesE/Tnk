@@ -5,26 +5,30 @@ namespace Tnk.Core
 {
     internal class Renderer : Component
     {
-        public Texture texture { get; private set; }
-        public Sprite sprite { get; private set; }
+        public Texture Texture { get; private set; }
+        public Sprite Sprite { get; private set; }
 
         public Renderer(GameObject gameObject, Texture texture) : base(gameObject)
         {
-            this.texture = texture;
-        
-            sprite = new Sprite();
-            sprite.Texture = texture;
+            this.Texture = texture;
+
+            Sprite = new Sprite
+            {
+                Texture = texture
+            };
         }
 
         public void SetTexture(Texture texture)
         {
-            sprite.Texture = texture;
+            Sprite.Texture = texture;
         }
 
         public void Render(RenderWindow window)
         {
-            sprite.Position = new Vector2f(transform.position.x, transform.position.y);
-            window.Draw(sprite);
+            Sprite.Position = new Vector2f(Transform.Position.x, Transform.Position.y);
+            Sprite.Scale = new Vector2f(Transform.Scale.x, Transform.Scale.y);
+            Sprite.Rotation = Transform.Rotation;
+            window.Draw(Sprite);
         }
     }
 }

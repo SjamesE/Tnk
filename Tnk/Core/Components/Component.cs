@@ -2,14 +2,14 @@
 {
     internal abstract class Component
     {
-        public GameObject parent { get; private set; }
-        public Transform transform { get; private set; }
+        public Object Parent { get; private set; }
+        public Transform Transform { get; private set; }
 
 
-        public Component(GameObject gameObject)
+        public Component(Object gameObject)
         {
-            parent = gameObject;
-            transform = gameObject.transform;
+            Parent = gameObject;
+            Transform = gameObject.Transform;
         }
     }
 }

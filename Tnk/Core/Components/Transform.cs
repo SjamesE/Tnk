@@ -4,15 +4,15 @@ namespace Tnk.Core
 {
     internal class Transform : Component
     {
-        public Vector2 position { get; set; }
-        public Vector2 rotation { get; set; }
-        public Vector2 scale { get; set; }
+        public Vector2 Position { get; set; }
+        public float Rotation { get; set; }
+        public Vector2 Scale { get; set; }
 
-        public Transform(GameObject gameObject) : base(gameObject)
+        public Transform(Object gameObject) : base(gameObject)
         {
-            position = new Vector2();
-            rotation = new Vector2();
-            scale = new Vector2();
+            Position = new Vector2();
+            Rotation = 0;
+            Scale = new Vector2();
         }
     }
 }

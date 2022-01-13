@@ -1,7 +1,7 @@
 using SFML.System;
 using SFML.Graphics;
 
-namespace Tnk
+namespace Tnk.Core
 {
 	internal static class Assets
     {

@@ -2,7 +2,7 @@
 using SFML.Window;
 using SFML.Graphics;
 
-namespace Tnk
+namespace Tnk.Core
 {
     internal abstract class Game
     {
@@ -12,34 +12,44 @@ namespace Tnk
         uint WINDOW_HEIGHT = 600;
         uint WINDOW_WIDTH = 800;
 
-        Window window;
+        RenderWindow window;
         protected Time time;
+        protected Render renderer;
 
         public Game()
         {
-            window = new Window(new VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Tanks");
+            window = new RenderWindow(new VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Tanks");
             time = new Time();
+            renderer = new Render(window);
+            window.Closed += Window_Closed;
         }
-        
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            window.Close();
+        }
+
         public void Run()
         {
             float timeTillUpdate = FRAME_TIME;
+            Initialize();
             while(window.IsOpen)
             {
+                window.DispatchEvents();
                 time.Update();
                 if (timeTillUpdate < 0)
                 {
                     timeTillUpdate = FRAME_TIME;
-                    Console.WriteLine(time.totalTime.ToString());
+                    Console.WriteLine(time.TotalTime.ToString());
                     Update();
-                    Draw();
+                    renderer.Draw(SceneManager.GetActiveScene());
                 }
-                else timeTillUpdate -= time.deltaTime;
+                else timeTillUpdate -= time.DeltaTime;
             }
         }
 
+        public abstract void Initialize();
 
         public abstract void Update();
-        public abstract void Draw();
     }
 }
