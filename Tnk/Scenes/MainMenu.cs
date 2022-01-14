@@ -1,5 +1,6 @@
 ﻿using Tnk.Core;
 using Tnk.Core.UI;
+using Tnk.Generics;
 
 namespace Tnk.Scenes.Menu
 {
@@ -14,7 +15,7 @@ namespace Tnk.Scenes.Menu
         {
             mainMenu = SceneManager.CreateScene("MainMenu");
             panelObj = new UIObject("Panel");
-            panel = new Panel(panelObj);
+            panel = new Panel(panelObj, new Vector2i(600, 800));
             mainMenu.AddUIObject(panelObj);
         }
     }

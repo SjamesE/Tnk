@@ -18,7 +18,7 @@ namespace Tnk.Core
 
         public Game()
         {
-            window = new RenderWindow(new VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Tanks");
+            window = new RenderWindow(new VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), " ");
             time = new Time();
             renderer = new Render(window);
             window.Closed += Window_Closed;

@@ -1,5 +1,4 @@
 ﻿using Tnk.Generics;
-using Tnk.Core;
 
 namespace Tnk.Core.UI
 {

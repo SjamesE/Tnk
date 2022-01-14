@@ -1,4 +1,6 @@
 ﻿using SFML.Graphics;
+using Tnk.Generics;
+using Tnk.Core.Math;
 
 namespace Tnk.Core.UI
 {
@@ -12,15 +14,34 @@ namespace Tnk.Core.UI
 
         public Panel(UIObject parent) : base(parent)
         {
-            parent.AddComponent(this);
+            Initialize();
+        }
+
+        public Panel(UIObject parent, int x, int y) : base(parent)
+        {
+            transform.size = new Vector2i(x, y);
+            Initialize();
+        }
+
+        public Panel(UIObject parent, Vector2i size) : base(parent)
+        {
+            transform.size = size;
+            Initialize();
+        }
+
+
+        public void Initialize()
+        {
+            parent.AddComponent(this);    
 
             texture = new Texture(1, 1);
             color = Color.Black;
+            customTexture = false;
             rounding = 0f;
             sprite = new Sprite();
             Update();
         }
-        
+
         public void SetColor(Color color)
         {
             this.color = color;
@@ -35,15 +56,30 @@ namespace Tnk.Core.UI
 
         public void Update()
         {
-            if (transform.size.x < 0 || transform.size.y < 0) return;
-            Color[,] pixels = new Color[,]{ { Color.Black }, { Color.White },
-                                            { Color.Red   }, { Color.Green },
-                                            { Color.Blue  }, { Color.Cyan  }};
+            if (transform.size.x <= 0 || transform.size.y <= 0) return;
+            int maxX = (int)transform.size.y;
+            int maxY = (int)transform.size.x;
+            Color[,] pixels = new Color[maxX, maxY];
+            int _x = 0;
+            int _y = 0;
+            Random random = new Random();
+            for (int x = 0; x < maxX; x++)
+            {
+                for (int y = 0; y < maxY; y++)
+                {
+                    pixels[x, y] = new Color(0,//(byte)Maths.Normalize(_x, 0, maxX, 255),             
+                                             (byte)Maths.Normalize(_y, 0, maxY, 255),             
+                                             0);//(byte)Maths.Normalize(_x + _y, 0, maxX + maxY, 255));
+                    _y++;
+                }
+                _x++;
+                _y = 0;
+            }
+
             Image image = new Image(pixels);
 
             texture = new Texture(image);
             sprite.Texture = texture;
-            sprite.Scale = new SFML.System.Vector2f(10, 10);
         }
 
         public void Draw(RenderWindow window)
