@@ -6,8 +6,8 @@ namespace Tnk.Core
     {
         private Clock clock;
 
-        public float DeltaTime { get; private set; }
-        public float TotalTime { get; private set; }
+        public float deltaTime { get; private set; }
+        public float totalTime { get; private set; }
 
         private float lastTime = 0;
 
@@ -18,11 +18,11 @@ namespace Tnk.Core
 
         public void Update()
         {
-            TotalTime = clock.ElapsedTime.AsSeconds();
-            DeltaTime = TotalTime - lastTime;
+            totalTime = clock.ElapsedTime.AsSeconds();
+            deltaTime = totalTime - lastTime;
 
 
-            lastTime = TotalTime;
+            lastTime = totalTime;
         }
 
     }

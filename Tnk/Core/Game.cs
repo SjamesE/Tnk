@@ -40,11 +40,11 @@ namespace Tnk.Core
                 if (timeTillUpdate < 0)
                 {
                     timeTillUpdate = FRAME_TIME;
-                    Console.WriteLine(time.TotalTime.ToString());
+                    Console.WriteLine(time.totalTime.ToString());
                     Update();
                     renderer.Draw(SceneManager.GetActiveScene());
                 }
-                else timeTillUpdate -= time.DeltaTime;
+                else timeTillUpdate -= time.deltaTime;
             }
         }
 

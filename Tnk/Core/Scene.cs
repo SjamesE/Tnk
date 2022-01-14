@@ -1,26 +1,40 @@
-﻿namespace Tnk.Core
+﻿using Tnk.Core.UI;
+
+namespace Tnk.Core
 {
     internal class Scene
     {
-        public string Name { get; private set; }
-        public int SceneIndex { get; private set; }
-        public List<GameObject> GameObjects { get; private set; }
+        public string name { get; private set; }
+        public int sceneIndex { get; private set; }
+        public List<GameObject> gameObjects { get; private set; }
+        public List<UIObject> uiObjects { get; set; }
 
         public Scene(string name, int index)
         {
-            Name = name;
-            SceneIndex = index;
-            GameObjects = new List<GameObject>();
+            this.name = name;
+            sceneIndex = index;
+            gameObjects = new List<GameObject>();
+            uiObjects = new List<UIObject>();
         }
 
         public void AddGameObject(GameObject gameObject)
         {
-            GameObjects.Add(gameObject);
+            gameObjects.Add(gameObject);
         }
 
-        public bool RemoveObject(GameObject gameObject)
+        public bool RemoveGameObject(GameObject gameObject)
         {
-            return GameObjects.Remove(gameObject);
+            return gameObjects.Remove(gameObject);
+        }
+
+        public void AddUIObject(UIObject uiObject)
+        {
+            uiObjects.Add(uiObject);
+        }
+
+        public bool RemoveUIObject(UIObject uiObject)
+        {
+            return uiObjects.Remove(uiObject);
         }
     }
 }

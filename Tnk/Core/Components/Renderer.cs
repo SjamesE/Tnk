@@ -5,17 +5,14 @@ namespace Tnk.Core
 {
     internal class Renderer : Component
     {
-        public Texture Texture { get; private set; }
+        public Texture texture { get; private set; }
         public Sprite Sprite { get; private set; }
 
         public Renderer(GameObject gameObject, Texture texture) : base(gameObject)
         {
-            this.Texture = texture;
+            this.texture = texture;
 
-            Sprite = new Sprite
-            {
-                Texture = texture
-            };
+            Sprite = new Sprite(texture);
         }
 
         public void SetTexture(Texture texture)
@@ -25,9 +22,9 @@ namespace Tnk.Core
 
         public void Render(RenderWindow window)
         {
-            Sprite.Position = new Vector2f(Transform.Position.x, Transform.Position.y);
-            Sprite.Scale = new Vector2f(Transform.Scale.x, Transform.Scale.y);
-            Sprite.Rotation = Transform.Rotation;
+            Sprite.Position = new Vector2f(transform.position.x, transform.position.y);
+            Sprite.Scale = new Vector2f(transform.scale.x, transform.scale.y);
+            Sprite.Rotation = transform.rotation;
             window.Draw(Sprite);
         }
     }
