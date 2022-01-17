@@ -30,7 +30,7 @@ namespace Tnk.Core
         public void Run()
         {
             float timeTillUpdate = FRAME_TIME;
-            Initialize();
+            Initialize(window);
             while(window.IsOpen)
             {
                 window.DispatchEvents();
@@ -47,7 +47,7 @@ namespace Tnk.Core
             }
         }
 
-        public abstract void Initialize();
+        public abstract void Initialize(RenderWindow window);
 
         public abstract void Update();
     }

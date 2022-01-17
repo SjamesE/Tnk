@@ -25,9 +25,9 @@ namespace Tnk.Core
             return scenes.ElementAt(index);
         }
 
-        public static Scene CreateScene(RenderWindow window, string name)
+        public static Scene CreateScene(string name)
         {
-            scenes.Add(new Scene(window, name, scenes.Count));
+            scenes.Add(new Scene(name, scenes.Count));
             return scenes.ElementAt(scenes.Count - 1);
         }
 

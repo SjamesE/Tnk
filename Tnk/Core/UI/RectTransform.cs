@@ -1,17 +1,18 @@
-﻿using Tnk.Generics;
+﻿using SFML.Graphics;
+using Tnk.Generics;
 
 namespace Tnk.Core.UI
 {
     internal class RectTransform
     {
-        public enum HorizontalAlignment
+        public enum HAlign
         {
             none,
             left,
             centre,
             right
         }
-        public enum VerticalAlignment
+        public enum VAlign
         {
             none,
             top,
@@ -21,30 +22,53 @@ namespace Tnk.Core.UI
 
         public Vector2i position;
         public Vector2i size;
-        public HorizontalAlignment horizontalAlignment;
-        public VerticalAlignment verticalAlignment;
+        public HAlign hAlign;
+        public VAlign vAlign;
 
-        public RectTransform(Vector2i size, HorizontalAlignment ha = HorizontalAlignment.centre, VerticalAlignment va = VerticalAlignment.centre)
-        {
-            position = new Vector2i();
-            size = new Vector2i();
-            horizontalAlignment = ha;
-            verticalAlignment = va;
-        }
+        private RenderWindow window;
 
-        public RectTransform(Vector2i position, Vector2i size, HorizontalAlignment ha = HorizontalAlignment.centre, VerticalAlignment va = VerticalAlignment.centre)
+        public RectTransform(RenderWindow window, Vector2i size, HAlign ha = HAlign.centre, VAlign va = VAlign.centre)
         {
-            this.position = position;
             this.size = size;
-            horizontalAlignment = ha;
-            verticalAlignment = va;
+            this.window = window;
+            hAlign = ha;
+            vAlign = va;
+            UpdatePos();
         }
 
-        private void UpdatePosition()
+        private void UpdatePos()
         {
-            if (horizontalAlignment == HorizontalAlignment.centre)
+            switch (hAlign)
             {
-
+                case HAlign.none:
+                    break;
+                case HAlign.left:
+                    position.x = 0;
+                    break;
+                case HAlign.centre:
+                    position.x = window.Size.X / 2 - size.x / 2;
+                    break;
+                case HAlign.right:
+                    position.x = window.Size.X - size.x;
+                    break;
+                default:
+                    break;
+            }
+            switch (vAlign)
+            {
+                case VAlign.none:
+                    break;
+                case VAlign.top:
+                    position.y = 0;
+                    break;
+                case VAlign.centre:
+                    position.y = window.Size.Y / 2 - size.y / 2;
+                    break;
+                case VAlign.bottom:
+                    position.y = window.Size.Y - size.y;
+                    break;
+                default:
+                    break;
             }
         }
     }

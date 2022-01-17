@@ -18,24 +18,7 @@ namespace Tnk.Core.UI
 
         public Panel(UIObject parent) : base(parent)
         {
-            Initialize();
-        }
-
-        public Panel(UIObject parent, int x, int y) : base(parent)
-        {
-            transform.size = new Vector2i(x, y);
-            Initialize();
-        }
-
-        public Panel(UIObject parent, Vector2i size) : base(parent)
-        {
-            transform.size = size;
-            Initialize();
-        }
-        
-        private void Initialize()
-        {
-            parent.AddComponent(this);    
+            parent.AddComponent(this);
 
             texture = new Texture((uint)transform.size.x, (uint)transform.size.y);
             color = Color.Black;
@@ -102,7 +85,7 @@ namespace Tnk.Core.UI
             texture.Dispose();
             texture = new Texture(image);
             sprite.Texture = texture;
-            sprite.Position = new SFML.System.Vector2f(transform.position.x, transform.position.y);
+            sprite.Position = new SFML.System.Vector2f(parent.transform.position.x, parent.transform.position.y);
         }
 
         public void Draw(RenderWindow window)

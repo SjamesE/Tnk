@@ -1,4 +1,6 @@
-﻿using Tnk.Generics;
+﻿using SFML.Graphics;
+using Tnk.Generics;
+using static Tnk.Core.UI.RectTransform;
 
 namespace Tnk.Core.UI
 {
@@ -10,20 +12,20 @@ namespace Tnk.Core.UI
 
         private List<UIComponent> components = new List<UIComponent>();
 
-        public UIObject(string name)
+        public UIObject(RenderWindow window, string name, Vector2i size, HAlign hAlign, VAlign vAlign)
         {
             this.name = name;
             isActive = true;
-            transform = new RectTransform();
+            transform = new RectTransform(window, size);
         }
 
-        public UIObject(string name, Vector2i position)
+        public UIObject(RenderWindow window, string name, Vector2i size)
         {
             this.name = name;
             isActive = true;
-            transform = new RectTransform(position);
+            transform = new RectTransform(window, size);
         }
-
+        
         public void AddComponent(UIComponent component)
         {
             components.Add(component);
