@@ -13,13 +13,11 @@ namespace Tnk.Core
         uint WINDOW_WIDTH = 800;
 
         RenderWindow window;
-        protected Time time;
         protected Render renderer;
 
         public Game()
         {
             window = new RenderWindow(new VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), " ");
-            time = new Time();
             renderer = new Render(window);
             window.Closed += Window_Closed;
         }
@@ -36,15 +34,16 @@ namespace Tnk.Core
             while(window.IsOpen)
             {
                 window.DispatchEvents();
-                time.Update();
+                //Console.WriteLine("2  " + Time.deltaTime);
+                Time.Update();
+                Update();
                 if (timeTillUpdate < 0)
                 {
                     timeTillUpdate = FRAME_TIME;
-                    Console.WriteLine(time.totalTime.ToString());
-                    Update();
+                    
                     renderer.Draw(SceneManager.GetActiveScene());
                 }
-                else timeTillUpdate -= time.deltaTime;
+                else timeTillUpdate -= Time.deltaTime;
             }
         }
 

@@ -1,4 +1,6 @@
-﻿namespace Tnk.Core
+﻿using SFML.Graphics;
+
+namespace Tnk.Core
 {
     internal static class SceneManager
     {
@@ -23,9 +25,9 @@
             return scenes.ElementAt(index);
         }
 
-        public static Scene CreateScene(string name)
+        public static Scene CreateScene(RenderWindow window, string name)
         {
-            scenes.Add(new Scene(name, scenes.Count));
+            scenes.Add(new Scene(window, name, scenes.Count));
             return scenes.ElementAt(scenes.Count - 1);
         }
 

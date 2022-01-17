@@ -37,6 +37,11 @@
             return new Vector2i(left.x * right.x, left.y * right.y);
         }
 
+        public static Vector2i operator *(Vector2i left, int right)
+        {
+            return new Vector2i(left.x * right, left.y * right);
+        }
+
         public static Vector2i operator /(Vector2i left, Vector2i right)
         {
             if (right.x == 0 || right.y == 0)
@@ -44,6 +49,11 @@
                 throw new DivideByZeroException();
             }
             return new Vector2i(left.x / right.x, left.y / right.y);
+        }
+
+        public static Vector2i operator /(Vector2i left, int right)
+        {
+            return new Vector2i(left.x / right, left.y / right);
         }
 
         public override string ToString() => $"X: {x}, Y: {y}";

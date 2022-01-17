@@ -1,4 +1,5 @@
-﻿using Tnk.Core.UI;
+﻿using SFML.Graphics;
+using Tnk.Core.UI;
 
 namespace Tnk.Core
 {
@@ -8,9 +9,11 @@ namespace Tnk.Core
         public int sceneIndex { get; private set; }
         public List<GameObject> gameObjects { get; private set; }
         public List<UIObject> uiObjects { get; set; }
+        private RenderWindow window;
 
-        public Scene(string name, int index)
+        public Scene(RenderWindow window, string name, int index)
         {
+            this.window = window;
             this.name = name;
             sceneIndex = index;
             gameObjects = new List<GameObject>();

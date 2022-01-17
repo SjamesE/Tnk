@@ -2,28 +2,29 @@
 
 namespace Tnk.Core
 {
-    internal class Time
+    internal static class Time
     {
-        private Clock clock;
+        private static Clock clock;
 
-        public float deltaTime { get; private set; }
-        public float totalTime { get; private set; }
+        public static readonly float fixedDeltaTime = 1f/60;
 
-        private float lastTime = 0;
+        public static float deltaTime { get; private set; }
+        public static float totalTime { get; private set; }
 
-        public Time()
+        private static float lastTime = 0;
+
+        static Time()
         {
             clock = new Clock();
         }
 
-        public void Update()
+        public static void Update()
         {
             totalTime = clock.ElapsedTime.AsSeconds();
             deltaTime = totalTime - lastTime;
-
+            //Console.WriteLine(deltaTime.ToString());
 
             lastTime = totalTime;
         }
-
     }
 }
