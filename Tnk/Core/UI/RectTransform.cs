@@ -46,10 +46,10 @@ namespace Tnk.Core.UI
                     position.x = 0;
                     break;
                 case HAlign.centre:
-                    position.x = window.Size.X / 2 - size.x / 2;
+                    position.x = (int)window.Size.X / 2 - size.x / 2;
                     break;
                 case HAlign.right:
-                    position.x = window.Size.X - size.x;
+                    position.x = (int)window.Size.X - size.x;
                     break;
                 default:
                     break;
@@ -62,10 +62,10 @@ namespace Tnk.Core.UI
                     position.y = 0;
                     break;
                 case VAlign.centre:
-                    position.y = window.Size.Y / 2 - size.y / 2;
+                    position.y = (int)window.Size.Y / 2 - size.y / 2;
                     break;
                 case VAlign.bottom:
-                    position.y = window.Size.Y - size.y;
+                    position.y = (int)window.Size.Y - size.y;
                     break;
                 default:
                     break;

@@ -4,8 +4,8 @@
     {
         public static readonly Vector2 zero = new Vector2(0, 0);
         public static readonly Vector2 one = new Vector2(1, 1);
-        public float x { get; set; }
-        public float y { get; set; }
+        public int x { get; set; }
+        public int y { get; set; }
 
         public Vector2i()
         {
@@ -13,7 +13,7 @@
             y = 0;
         }
 
-        public Vector2i(float x, float y)
+        public Vector2i(int x, int y)
         {
             this.x = x;
             this.y = y;
