@@ -48,8 +48,8 @@ namespace Tnk.Core.UI
         public void Update()
         {
             if (transform.size.x <= 0 || transform.size.y <= 0) return;
-            int maxX = (int)transform.size.y;
-            int maxY = (int)transform.size.x;
+            int maxX = (int)transform.size.x;
+            int maxY = (int)transform.size.y;
             pixels = new Color[maxX, maxY];
             if (add)
             {

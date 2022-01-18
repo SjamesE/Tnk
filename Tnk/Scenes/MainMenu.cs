@@ -17,7 +17,7 @@ namespace Tnk.Scenes.Menu
         {
             this.window = window;
             mainMenu = SceneManager.CreateScene("MainMenu");
-            panelObj = new UIObject(window, "Panel", new Vector2i(50, 100));
+            panelObj = new UIObject(window, "Panel", new Vector2i(500, 550));
             panel = new Panel(panelObj);
             mainMenu.AddUIObject(panelObj);
         }
