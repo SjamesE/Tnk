@@ -12,8 +12,8 @@ namespace Tnk.Core.UI
         public Color color { get; private set; }
         public int rounding  { get; private set; }
         public int borderSize { get; private set; }
-        private Color[,] pixels;
-        private Image image;
+        private Color[,] pixels = new Color[0,0];
+        private Image image = new Image(0,0);
         private float dt = 0;
         private bool add = true;
 
@@ -85,7 +85,7 @@ namespace Tnk.Core.UI
                 {
                     if (!IsPixelOnTheEdge(x, y))
                     {
-                        if (x < borderSize || x > size.x - borderSize - 1 || y < borderSize || y >= size.y - borderSize - 1)
+                        if (x < borderSize || x > size.x - borderSize - 1 || y < borderSize || y >= size.y - borderSize)
                             pixels[x, y] = new Color(150, 150, 150, 255);
                         else
                         {
@@ -115,7 +115,7 @@ namespace Tnk.Core.UI
             window.Draw(sprite);
         }
 
-        public bool IsPixelOnTheEdge(int x, int y, int offset = 0)
+        private bool IsPixelOnTheEdge(int x, int y, int offset = 0)
         {
             Vector2i size = parent.transform.size;
             if (rounding == 0) return false;
@@ -148,7 +148,7 @@ namespace Tnk.Core.UI
             return false;
         }
 
-        public float GetDistance(Vector2 left, Vector2 right)
+        private float GetDistance(Vector2 left, Vector2 right)
         {
             float h = MathF.Abs(right.y - left.y);
             float v = MathF.Abs(right.x - left.x);
