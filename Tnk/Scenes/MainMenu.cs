@@ -10,13 +10,13 @@ namespace Tnk.Scenes.Menu
         private Scene mainMenu;
         public readonly int sceneIndex = 0;
         public UIObject panelObj;
-        public Panel panel;
+        public Button panel;
 
         public MainMenu(RenderWindow window)
         {
             mainMenu = SceneManager.CreateScene("MainMenu");
             panelObj = new UIObject(window, "Panel", new Vector2i(500, 100));
-            panel = new Panel(panelObj);
+            panel = new Button(panelObj);
             panel.SetBorderSize(2);
             panel.SetRounding(15);
             mainMenu.AddUIObject(panelObj);

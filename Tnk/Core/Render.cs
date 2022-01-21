@@ -25,7 +25,6 @@ namespace Tnk.Core
             }
             foreach (UIObject obj in uiObjects)
             {
-                obj.GetComponent<Panel>().Update();
                 obj.GetComponent<Panel>().Draw(window);
             }
 

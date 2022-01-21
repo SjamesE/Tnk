@@ -32,6 +32,7 @@ namespace Tnk.Core.UI
         public void SetPosition(int x, int y)
         {
             parent.transform.position = new Vector2i(x, y);
+            Update();
         }
 
         public void SetColor(Color color)
@@ -49,36 +50,15 @@ namespace Tnk.Core.UI
         public void SetBorderSize(int borderSize)
         {
             this.borderSize = borderSize;
+            Update();
         }
 
-        public void Update()
+        private void Update()
         {
             if (transform.size.x <= 0 || transform.size.y <= 0) return;
             Vector2i size = parent.transform.size;
             int maxX = size.x;
             int maxY = size.y;
-            pixels = new Color[maxX, maxY];
-            if (add)
-            {
-                dt += Time.fixedDeltaTime;
-                if (dt >= 1)
-                {
-                    dt = 1;
-                    add = false;
-                }
-            }
-            else
-            {
-                dt -= Time.fixedDeltaTime;
-                if (dt <= 0)
-                {
-                    dt = 0;
-                    add = true;
-                }
-            }
-            //borderSize = 2;
-            //dt = 1;
-            //rounding = Maths.Lerp(0, size.x / 2, dt);
             for (int x = 0; x < maxX; x++)
             {
                 for (int y = 0; y < maxY; y++)
@@ -99,7 +79,6 @@ namespace Tnk.Core.UI
                     }
                     else
                         pixels[x, y] = new Color(0, 0, 0, 0);
-                    //pixels[x, y] = new Color();
                 }
             }
 
@@ -110,7 +89,7 @@ namespace Tnk.Core.UI
             sprite.Position = new SFML.System.Vector2f(parent.transform.position.x, parent.transform.position.y);
         }
 
-        public void Draw(RenderWindow window)
+        public virtual void Draw(RenderWindow window)
         {
             window.Draw(sprite);
         }
