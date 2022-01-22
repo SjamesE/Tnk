@@ -12,18 +12,18 @@ namespace Tnk.Core.UI
 
         private List<UIComponent> components = new List<UIComponent>();
 
-        public UIObject(RenderWindow window, string name, Vector2i size, HAlign hAlign, VAlign vAlign)
+        public UIObject(RenderWindow window, string name, Vector2i size, HAlign hAlign = HAlign.centre, VAlign vAlign = VAlign.centre)
         {
             this.name = name;
             isActive = true;
-            transform = new RectTransform(window, size);
+            transform = new RectTransform(window, size, hAlign, vAlign);
         }
 
-        public UIObject(RenderWindow window, string name, Vector2i size)
+        public UIObject(RenderWindow window, string name, Vector2i position, Vector2i size)
         {
             this.name = name;
             isActive = true;
-            transform = new RectTransform(window, size);
+            transform = new RectTransform(window, position, size);
         }
         
         public void AddComponent(UIComponent component)

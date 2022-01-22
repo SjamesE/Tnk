@@ -36,6 +36,15 @@ namespace Tnk.Core.UI
             UpdatePos();
         }
 
+        public RectTransform(RenderWindow window, Vector2i position, Vector2i size)
+        {
+            this.size = size;
+            this.window = window;
+            hAlign = HAlign.none;
+            vAlign = VAlign.none;
+            this.position = position;
+        }
+
         private void UpdatePos()
         {
             switch (hAlign)

@@ -1,6 +1,5 @@
 ﻿using SFML.Graphics;
 using Tnk.Generics;
-using Tnk.Core.Math;
 
 namespace Tnk.Core.UI
 {
@@ -8,48 +7,23 @@ namespace Tnk.Core.UI
     {
         public Texture texture { get; private set; }
         public Sprite sprite { get; private set; }
+        public Vector2i center { get; private set; }
         public bool customTexture { get; private set; }
         public Color color { get; private set; }
         public int rounding  { get; private set; }
         public int borderSize { get; private set; }
         private Color[,] pixels = new Color[0,0];
         private Image image = new Image(0,0);
-        private float dt = 0;
-        private bool add = true;
 
         public Panel(UIObject parent) : base(parent)
         {
             parent.AddComponent(this);
 
             texture = new Texture((uint)transform.size.x, (uint)transform.size.y);
-            color = Color.Black;
+            color = Color.White;
             customTexture = false;
             rounding = 0;
             sprite = new Sprite();
-            Update();
-        }
-
-        public void SetPosition(int x, int y)
-        {
-            parent.transform.position = new Vector2i(x, y);
-            Update();
-        }
-
-        public void SetColor(Color color)
-        {
-            this.color = color;
-            Update();
-        }
-
-        public void SetRounding(int rounding)
-        {
-            this.rounding = rounding;
-            Update();
-        }
-
-        public void SetBorderSize(int borderSize)
-        {
-            this.borderSize = borderSize;
             Update();
         }
 
@@ -59,6 +33,9 @@ namespace Tnk.Core.UI
             Vector2i size = parent.transform.size;
             int maxX = size.x;
             int maxY = size.y;
+
+            // Update each pixel in the Panel
+            pixels = new Color[maxX, maxY];
             for (int x = 0; x < maxX; x++)
             {
                 for (int y = 0; y < maxY; y++)
@@ -72,9 +49,9 @@ namespace Tnk.Core.UI
                             if (IsPixelOnTheEdge(x, y, borderSize))
                             {
                                 pixels[x, y] = new Color(150, 150, 150, 255);
-                            } 
+                            }
                             else
-                                pixels[x, y] = new Color(255, 255, 255);
+                                pixels[x, y] = color;
                         }
                     }
                     else
@@ -82,11 +59,16 @@ namespace Tnk.Core.UI
                 }
             }
 
+            // Update the texture from the Pixels
             image = new Image(pixels);
             texture.Dispose();
             texture = new Texture(image);
             sprite.Texture = texture;
-            sprite.Position = new SFML.System.Vector2f(parent.transform.position.x, parent.transform.position.y);
+
+            // Update Position
+            Vector2i pos = new Vector2i(parent.transform.position.x, parent.transform.position.y);
+            sprite.Position = new SFML.System.Vector2f(pos.x, pos.y);
+            center = new Vector2i(pos.x + size.x / 2, pos.y + size.y / 2);
         }
 
         public virtual void Draw(RenderWindow window)
@@ -133,5 +115,31 @@ namespace Tnk.Core.UI
             float v = MathF.Abs(right.x - left.x);
             return MathF.Sqrt((h * h) + (v * v));
         }
+
+        #region Setters
+        public void SetPosition(int x, int y)
+        {
+            parent.transform.position = new Vector2i(x, y);
+            Update();
+        }
+
+        public void SetColor(Color color)
+        {
+            this.color = color;
+            Update();
+        }
+
+        public void SetRounding(int rounding)
+        {
+            this.rounding = rounding;
+            Update();
+        }
+
+        public void SetBorderSize(int borderSize)
+        {
+            this.borderSize = borderSize;
+            Update();
+        }
+        #endregion
     }
 }

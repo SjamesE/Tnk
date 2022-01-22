@@ -6,7 +6,20 @@
         public static readonly Vector2 one = new Vector2(1, 1);
         public int x { get; set; }
         public int y { get; set; }
-
+        public SFML.System.Vector2i ToSFMLVector2i
+        {
+            get
+            {
+                return new SFML.System.Vector2i(x, y);
+            }
+        }
+        public SFML.System.Vector2f ToSFMLVector2f
+        {
+            get
+            {
+                return new SFML.System.Vector2f(x, y);
+            }
+        }
         public Vector2i()
         {
             x = 0;
